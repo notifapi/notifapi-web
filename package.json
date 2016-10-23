@@ -2,6 +2,20 @@
   "name": "watchiot-notif",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/watchiot/watchiot-notif.git"
+  },
+  "keywords": [
+    "api",
+    "watchiot",
+    "notification"
+  ],
+  "author": "WatchIoT",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/watchiot/watchiot-notif/issues"
+  },
   "devDependencies": {
     "react-scripts": "0.7.0"
   },
