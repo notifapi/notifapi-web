@@ -1,10 +1,10 @@
-// src/components/NotFound/index.js
+// src/components/About/index.js
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
 
 import './style.css';
 
-export default class NotFound extends Component {
+export default class About extends Component {
     // static propTypes = {}
     // static defaultProps = {}
     // state = {}
@@ -12,9 +12,9 @@ export default class NotFound extends Component {
     render() {
         const { className, ...props } = this.props;
         return (
-            <div className={classnames('NotFound', className)} {...props}>
+            <div className={classnames('About', className)} {...props}>
                 <h1>
-                    404 <small>Not Found :(</small>
+                    About
                 </h1>
             </div>
         );
