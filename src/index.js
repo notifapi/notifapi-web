@@ -8,11 +8,12 @@ import { browserHistory } from 'react-router';
 
 import Routes from './ui/routes';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+
 import './index.css';
 
-import config from './config';
-
-Raven.config(config.get("raven_url")).install()
+Raven.config(process.env.REACT_APP_RAVEN_URL).install();
 
 ReactDOM.render(
   <Routes history={browserHistory} />,
