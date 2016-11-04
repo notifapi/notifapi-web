@@ -13,7 +13,9 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 
 import './index.css';
 
-Raven.config(process.env.REACT_APP_RAVEN_URL).install();
+Raven.config(process.env.REACT_APP_RAVEN_URL, {
+    environment: process.env.REACT_APP_ENVIRONMENT
+}).install();
 
 ReactDOM.render(
   <Routes history={browserHistory} />,
