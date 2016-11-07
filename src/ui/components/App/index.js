@@ -1,23 +1,13 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 
-import './App.css';
+import AppView from './App.view'
 
 class App extends Component {
-  render() {
-
+    render() {
         return (
-          <div className="App">
-            <div className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h2>WatchIoT Notification API</h2>
-            </div>
-            <p className="App-intro">
-                {this.props.children}
-            </p>
-          </div>
+            <AppView children={this.props.children}/>
         );
-  }
+    }
 }
 
 export default App;

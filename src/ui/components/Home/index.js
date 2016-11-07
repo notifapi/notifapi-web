@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
+import HomeView from './Home.view'
+
 class Home extends Component {
     render() {
         return (
-            <div>
-                <p>Home</p>
-            </div>
+            <HomeView />
         );
     }
 }
