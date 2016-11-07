@@ -13,7 +13,12 @@ if (process.env.NODE_ENV !== 'production') {
 app.use(express.static(path.resolve(__dirname, '../..', 'build')));
 
 // Always return the main index.html, so react-router render the route in the client
+app.get('/hello', (req, res) => {
+    res.json({user:'gorums'})
+});
+
 app.get('*', (req, res) => {
+    console.log('pass away');
     res.sendFile(path.resolve(__dirname, '../..', 'build', 'index.html'));
 });
 

@@ -3,7 +3,7 @@ import React from 'react';
 function HomeView (props) {
     return (
         <div>
-            <p>Home</p>
+            <p>Hello {props.user.user || 'empty'}</p>
         </div>
     );
 }

@@ -11,7 +11,7 @@ import Routes from './ui/routes';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 
-import './index.css';
+import './ui/main.css';
 
 Raven.config(process.env.REACT_APP_RAVEN_URL, {
     environment: process.env.REACT_APP_ENVIRONMENT
