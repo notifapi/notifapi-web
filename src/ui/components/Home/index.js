@@ -13,7 +13,7 @@ class Home extends Component {
     }
 
     fetchUser() {
-        return axios.get('/hello');
+        return axios.post('/hello');
     }
 
     componentDidMount() {

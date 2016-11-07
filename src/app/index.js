@@ -2,6 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const routes = require('./routes');
 
 const app = express();
 
@@ -12,13 +13,11 @@ if (process.env.NODE_ENV !== 'production') {
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '../..', 'build')));
 
-// Always return the main index.html, so react-router render the route in the client
-app.get('/hello', (req, res) => {
-    res.json({user:'gorums'})
-});
+// ExpressJs routes
+app.use('/', routes);
 
+// Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {
-    console.log('pass away');
     res.sendFile(path.resolve(__dirname, '../..', 'build', 'index.html'));
 });
 
