@@ -2,9 +2,10 @@ import React from 'react';
 
 import './Footer.css';
 
-function FooterView() {
+function FooterView(props) {
     return (
         <footer>
+            <div>© {props.year} WatchIoT</div>
         </footer>
     )
 }

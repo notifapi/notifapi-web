@@ -5,7 +5,7 @@ import HeaderView from './Header.view'
 class Header extends Component {
     render() {
         return (
-            <HeaderView children={this.props.children}/>
+            <HeaderView />
         );
     }
 }
