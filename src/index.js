@@ -8,10 +8,10 @@ import { browserHistory } from 'react-router';
 
 import Routes from './ui/routes';
 
+import './ui/main.css';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-
-import './ui/main.css';
 
 // Tracer the error code and warning on production
 Raven.config(process.env.REACT_APP_RAVEN_URL, {

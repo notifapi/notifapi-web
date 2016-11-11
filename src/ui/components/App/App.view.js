@@ -1,19 +1,32 @@
 import React from 'react';
 
-import logo from './logo.svg';
-
 import './App.css';
 
-function AppView (props) {
+function AppMenuView() {
     return (
-        <div className="App">
-            <div className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <h2>WatchIoT Notification API</h2>
+        <header role="banner" className="navbar navbar-custom navbar-static-top">
+            <div className="container">
+                <div className="navbar-header"><a className="navbar-brand" href="/">WatchIoT Notification API</a>
+
+                </div>
+                <div className="navbar-collapse bs-navbar-collapse collapse">
+                    <ul id="top" role="navigation" className="nav navbar-nav">
+                        <li><a href="#getting-started">Getting started</a></li>
+                        <li><a href="#notification">Type of Notifications</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
             </div>
-            <p className="App-intro">
+        </header>
+    )
+}
+function AppView(props) {
+    return (
+        <div>
+            <AppMenuView />
+            <div className="container">
                 {props.children}
-            </p>
+            </div>
         </div>
     );
 }
