@@ -2,16 +2,14 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 
-import App from './components/App';
-import Home from './components/Home';
-import Login from './components/Login'
+import App from './layouts/App';
 import NotFound from './components/NotFound';
+import HomeContainer from './containers/HomeContainer';
 
 const Routes = (props) => (
     <Router {...props}>
         <Route path="/" component={App} >
-            <IndexRoute component = {Home} />
-            <Route path="login" component={Login} />
+            <IndexRoute component = {HomeContainer} />
         </Route>
         <Route path="*" component={NotFound} />
     </Router>

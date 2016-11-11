@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './App.css';
+import './Header.css';
 
-function AppMenuView() {
+function HeaderView() {
     return (
         <header role="banner" className="navbar navbar-custom navbar-static-top">
             <div className="container">
@@ -20,15 +20,5 @@ function AppMenuView() {
         </header>
     )
 }
-function AppView(props) {
-    return (
-        <div>
-            <AppMenuView />
-            <div className="container">
-                {props.children}
-            </div>
-        </div>
-    );
-}
 
-export default AppView;
+export default HeaderView;

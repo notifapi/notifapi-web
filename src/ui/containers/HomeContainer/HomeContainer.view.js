@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router'
 
-function HomeView (props) {
+function HomeContainerView (props) {
     return (
         <div>
             <p>Hello <Link to="Login">{props.user.user || 'empty'}</Link></p>
@@ -9,4 +9,4 @@ function HomeView (props) {
     );
 }
 
-export default HomeView;
+export default HomeContainerView;
