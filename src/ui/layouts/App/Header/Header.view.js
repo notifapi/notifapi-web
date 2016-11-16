@@ -6,7 +6,7 @@ function HeaderView() {
     return (
         <header role="banner" className="navbar navbar-custom navbar-static-top">
             <div className="container">
-                <div className="navbar-header"><a className="navbar-brand" href="/">WatchIoT Notification API</a>
+                <div className="navbar-header"><a className="navbar-brand" href="/">Notification API</a>
 
                 </div>
                 <div className="navbar-collapse bs-navbar-collapse collapse">

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import DashboardContainerView from './DashboardContainer.view'
+import MainView from './MainView.view'
 
-class DashboardContainer extends Component {
+class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,9 +12,9 @@ class DashboardContainer extends Component {
 
     render() {
         return (
-            <DashboardContainerView />
+            <MainView />
         );
     }
 }
 
-export default DashboardContainer;
+export default Main;

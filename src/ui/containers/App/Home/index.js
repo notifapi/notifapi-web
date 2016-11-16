@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 
-import HomeContainerView from './HomeContainer.view'
+import HomeView from './Home.view'
 
-class HomeContainer extends Component {
+class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,9 +26,9 @@ class HomeContainer extends Component {
 
     render() {
         return (
-            <HomeContainerView user={this.state.user}/>
+            <HomeView user={this.state.user}/>
         );
     }
 }
 
-export default HomeContainer;
+export default Home;

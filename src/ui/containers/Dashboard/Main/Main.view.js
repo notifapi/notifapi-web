@@ -1,10 +1,10 @@
 import React from 'react';
 
-function DashboardContainerView (props) {
+function MainView (props) {
     return (
         <div>
         </div>
     );
 }
 
-export default DashboardContainerView;
+export default MainView;
