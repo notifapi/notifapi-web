@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute } from 'react-router';
 
 import App from './layouts/App';
 import NotFound from './components/NotFound';
-import Home from './containers/App/Home';
+import Home from './views/App/Home';
 
 const Routes = (props) => (
     <Router {...props}>
