@@ -1,18 +1,11 @@
 // src/routes.js
 import React from 'react';
-import { Router, Route, IndexRoute } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
-import App from './layouts/App';
-import NotFound from './components/NotFound';
-import Home from './pages/App/Home';
+import App from './pages/App';
 
-const Routes = (props) => (
-    <Router {...props}>
-        <Route path="/" component={App} >
-            <IndexRoute component = {Home} />
-        </Route>
-        <Route path="*" component={NotFound} />
-    </Router>
+export default (
+    <Route path="/" component={App}>
+        <IndexRoute component={App} />
+    </Route>
 );
-
-export default Routes;
