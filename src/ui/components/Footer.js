@@ -9,7 +9,7 @@ export default class Footer extends Component {
     render() {
         return(
             <footer>
-                <div>© {this.props.currentYear} WatchIoT</div>
+                <div>© {this.props.currentYear} NotifAPI</div>
             </footer>
         )
     }
