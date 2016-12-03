@@ -2,12 +2,12 @@
 import React from 'react';
 import { Component } from 'react';
 
-export default class Home extends Component {
+export default class SingIn extends Component {
 
     render() {
         return(
             <h1>
-                {this.props.children}
+                Sing In here!!!
             </h1>
         )
     }
