@@ -5,6 +5,13 @@ body {
   line-height: 1.42857;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  line-height: 1;
+  margin-top: 0;
+  text-rendering: optimizelegibility;
+}
+
 footer {
   background-color: #222;
   color: #fff;
@@ -19,6 +26,7 @@ footer div {
   padding-top: 10px;
 }
 
+ /* ++++++++++++++ HOME ++++++++++++++++++ */
 .navbar-custom {
   background-color:#333;
   color:#ffffff;
@@ -39,4 +47,26 @@ footer div {
 
 .navbar-custom .navbar-brand {
   color:#bbbbbb;
+}
+
+.singup-padding {
+  padding-top: 80px;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+.singup h2 {
+  color: #35393b;
+  font-size: 3.6rem;
+  font-weight: 100;
+}
+
+.singup p {
+  color: #7d878a;
+  font-size: 2rem;
+  margin-top: 1.6rem;
+}
+
+.singup-form {
+  padding-right: 5px;
 }
