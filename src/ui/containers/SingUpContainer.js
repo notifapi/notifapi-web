@@ -1,7 +1,9 @@
 import {
-    signUpUser, signUpUserSuccess, signUpUserFailure,
+    signUpUser, signUpUserSuccess, signUpUserFailure } from '../actions/users';
+
+import {
     validateUserFields, validateUserFieldsSuccess,
-    validateUserFieldsFailure, resetValidateUserFields} from '../actions/users';
+    validateUserFieldsFailure, resetValidateUserFields } from '../actions/singup';
 
 import SingUp from '../components/SingUp';
 import { reduxForm } from 'redux-form';
