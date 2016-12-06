@@ -3,7 +3,8 @@ import {
     ME_FROM_TOKEN, ME_FROM_TOKEN_SUCCESS, ME_FROM_TOKEN_FAILURE, RESET_TOKEN,
     SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, RESET_USER,
     SIGNIN_USER, SIGNIN_USER_SUCCESS,  SIGNIN_USER_FAILURE,
-    LOGOUT_USER, UPDATE_USER_EMAIL
+    LOGOUT_USER, UPDATE_USER_EMAIL,
+    VALIDATE_USER_FIELDS, VALIDATE_USER_FIELDS_SUCCESS, VALIDATE_USER_FIELDS_FAILURE, RESET_VALIDATE_USER_FIELDS
 } from '../actions/users';
 
 
@@ -68,6 +69,15 @@ export default function(state = INITIAL_STATE, action) {
 
         case RESET_USER:// reset authenticated user to initial state
             return { ...state, user: null, status:null, error:null, loading: false};
+        case VALIDATE_USER_FIELDS://sign up or sign in form fields
+            return { ...state, error:null, loading: true};
+        case VALIDATE_USER_FIELDS_SUCCESS:// same as RESET_USER_FIELDS
+            return { ...state, error:null, loading: false};
+        case VALIDATE_USER_FIELDS_FAILURE:
+            error = action.payload.data ? action.payload.data : {message: action.payload.message}
+            return { ...state, error:error, loading: false};
+        case RESET_VALIDATE_USER_FIELDS:
+            return { ...state, error:null, loading: false};
 
         default:
             return state;
