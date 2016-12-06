@@ -43,7 +43,6 @@ function validate(values) {
         hasErrors = true;
     }
 
-    console.log(errors);
     return hasErrors && errors;
 }
 
