@@ -1,15 +1,17 @@
 import axios from 'axios';
 
-//Validate user fields like name and password
+//Validate user fields like username, email and password for the register
 export const VALIDATE_USER_FIELDS = 'VALIDATE_USER_FIELDS';
 export const VALIDATE_USER_FIELDS_SUCCESS = 'VALIDATE_USER_FIELDS_SUCCESS';
 export const VALIDATE_USER_FIELDS_FAILURE = 'VALIDATE_USER_FIELDS_FAILURE';
-export const RESET_VALIDATE_USER_FIELDS = 'RESET_VALIDATE_USER_FIELDS';
 
+//Sign Up User
+export const SIGNUP_USER = 'SIGNUP_USER';
+export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS';
+export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
 
 export function validateUserFields(values) {
-    //note: we cant have /users/validateFields because it'll match /users/:id path!
-    const request = axios.post(`/users/validate/fields`, values);
+    const request = axios.post(`/sing-up/validate`, values);
 
     return {
         type: VALIDATE_USER_FIELDS,
@@ -30,8 +32,25 @@ export function validateUserFieldsFailure(error) {
     };
 }
 
-export function resetValidateUserFields() {
+export function signUpUser(formValues) {
+    const request = axios.post(`/register`, formValues);
+
     return {
-        type: RESET_VALIDATE_USER_FIELDS
-    }
-};
+        type: SIGNUP_USER,
+        payload: request
+    };
+}
+
+export function signUpUserSuccess(user) {
+    return {
+        type: SIGNUP_USER_SUCCESS,
+        payload: user
+    };
+}
+
+export function signUpUserFailure(error) {
+    return {
+        type: SIGNUP_USER_FAILURE,
+        payload: error
+    };
+}

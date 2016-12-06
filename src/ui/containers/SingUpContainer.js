@@ -1,9 +1,7 @@
 import {
-    signUpUser, signUpUserSuccess, signUpUserFailure } from '../actions/users';
-
-import {
-    validateUserFields, validateUserFieldsSuccess,
-    validateUserFieldsFailure, resetValidateUserFields } from '../actions/singup';
+    validateUserFields, validateUserFieldsSuccess, validateUserFieldsFailure,
+    signUpUser, signUpUserSuccess, signUpUserFailure
+} from '../actions/singup';
 
 import SingUp from '../components/SingUp';
 import { reduxForm } from 'redux-form';
@@ -46,7 +44,6 @@ function validate(values) {
     return hasErrors && errors;
 }
 
-
 //For instant async server validation
 const asyncValidate = (values, dispatch) => {
 
@@ -58,11 +55,12 @@ const asyncValidate = (values, dispatch) => {
                 //if status is not 200 or any one of the fields exist, then there is a field error
                 if(response.payload.status != 200 || data.username || data.email) {
                     //let other components know of error by updating the redux` state
+
                     dispatch(validateUserFieldsFailure(response.payload));
                     reject(data); //this is for redux-form itself
                 } else {
                     //let other components know that everything is fine by updating the redux` state
-                    dispatch(validateUserFieldsSuccess(response.payload)); //ps: this is same as dispatching RESET_USER_FIELDS
+                    dispatch(validateUserFieldsSuccess(response.payload));
                     resolve();//this is for redux-form itself
                 }
             });
@@ -70,7 +68,7 @@ const asyncValidate = (values, dispatch) => {
 };
 
 //For any field errors upon submission (i.e. not instant check)
-const validateAndSignUpUser = (values, dispatch) => {
+const doSignUpUser = (values, dispatch) => {
 
     return new Promise((resolve, reject) => {
 
@@ -98,10 +96,7 @@ const validateAndSignUpUser = (values, dispatch) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signUpUser: validateAndSignUpUser,
-        resetMe: () =>{
-            dispatch(resetValidateUserFields());
-        }
+        signUpUser: doSignUpUser
     }
 }
 
