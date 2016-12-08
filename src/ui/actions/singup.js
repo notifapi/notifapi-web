@@ -33,7 +33,7 @@ export function validateUserFieldsFailure(error) {
 }
 
 export function signUpUser(formValues) {
-    const request = axios.post(`/register`, formValues);
+    const request = axios.post(`/sing-up`, formValues);
 
     return {
         type: SIGNUP_USER,

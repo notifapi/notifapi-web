@@ -1,11 +1,11 @@
 import {
     validateUserFields, validateUserFieldsSuccess, validateUserFieldsFailure,
-    signUpUser, signUpUserSuccess, signUpUserFailure
-} from '../actions/singup';
+    signUpUser, signUpUserSuccess, signUpUserFailure } from '../actions/singup';
 
-import SingUp from '../components/SingUp';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+
+import SingUp from '../components/SingUp';
 
 //Client side validation
 function validate(values) {
@@ -44,18 +44,22 @@ function validate(values) {
     return hasErrors && errors;
 }
 
-//For instant async server validation
+//Async server side validation
 const asyncValidate = (values, dispatch) => {
 
     return new Promise((resolve, reject) => {
 
+        let error = {
+            username: "We can not valid the form in the server",
+            email: "We can not valid the form in the server"
+        }
+
         dispatch(validateUserFields(values))
             .then((response) => {
-                let data = response.payload.data;
+                let data = response.error ? error : response.payload.data;
                 //if status is not 200 or any one of the fields exist, then there is a field error
-                if(response.payload.status != 200 || data.username || data.email) {
+                if(response.error || response.payload.status != 200 || data.username || data.email) {
                     //let other components know of error by updating the redux` state
-
                     dispatch(validateUserFieldsFailure(response.payload));
                     reject(data); //this is for redux-form itself
                 } else {
@@ -67,7 +71,7 @@ const asyncValidate = (values, dispatch) => {
     });
 };
 
-//For any field errors upon submission (i.e. not instant check)
+//Async server side sign up
 const doSignUpUser = (values, dispatch) => {
 
     return new Promise((resolve, reject) => {
@@ -81,10 +85,6 @@ const doSignUpUser = (values, dispatch) => {
                     dispatch(signUpUserFailure(response.payload));
                     reject(data); //this is for redux-form itself
                 } else {
-                    //store JWT Token to browser session storage
-                    //If you use localStorage instead of sessionStorage, then this w/ persisted across tabs and new windows.
-                    //sessionStorage = persisted only in current tab
-                    sessionStorage.setItem('jwtToken', response.payload.data.token);
                     //let other components know that we got user and things are fine by updating the redux` state
                     dispatch(signUpUserSuccess(response.payload));
                     resolve();//this is for redux-form itself
@@ -102,8 +102,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, ownProps) =>{
     return {
-        user: state.user,
-        validateFields: state.validateFields
+        user: state.singup.user
     };
 }
 
