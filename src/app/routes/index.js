@@ -22,14 +22,4 @@ router.post('/validateEmail', (req, res) => {
     res.json({user:'Everywhere'})
 });
 
-router.post('/sing-up/validate', (req, res) => {
-    console.log(req.body.username);
-    console.log(req.body.email);
-
-    res.json({
-        username: "username has already been taken",
-        email: "email has already been taken"
-    })
-});
-
 module.exports = router;
