@@ -1,13 +1,21 @@
+// set env variables in development or testd
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config({path: __dirname + '/.env'})
+}
 // server/app.js
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
+
 const routes = require('./routes');
 const singup = require('./routes/singup');
 
 const app = express();
+// Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
+app.use(helmet());
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '../..', 'build')));
