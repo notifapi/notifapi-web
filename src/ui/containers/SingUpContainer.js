@@ -56,6 +56,7 @@ const asyncValidate = (values, dispatch) => {
 
         dispatch(validateUserFields(values))
             .then((response) => {
+                console.log(response);
                 let data = response.error ? error : response.payload.data;
                 //if status is not 200 or any one of the fields exist, then there is a field error
                 if(response.error || response.payload.status != 200 || data.username || data.email) {
