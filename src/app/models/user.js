@@ -13,7 +13,7 @@ var UserSchema   = new Schema({
     username: String,
     email: String,
     password: String,
-    status: Boolean,
+    enable: { type: Boolean, default: false },
     created: { type: Date, default: Date.now }
 });
 

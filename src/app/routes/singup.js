@@ -1,49 +1,44 @@
 const express = require('express');
 var router = express.Router();
 
-var User = require('../models/user');
+var auth = require('../middlewares/auth');
 
-router.post('/', (req, res) => {
-    console.log(req.body.username);
-    console.log(req.body.email);
+var middlewares = [
+    auth.validUniqueUsername,
+    auth.validUniqueEmail
+];
 
-    res.json({
-        username: req.body.username,
-        email: req.body.email
-    })
+router.post('/', middlewares, (req, res) => {
+    if(req.usernameIsTaken || req.emailIsTaken) {
+        return res.status(400).json({error: "username or email are not unique!!"})
+    }
+
+    var user = new User();
+
+    user.username = req.body.username;
+    user.email = req.body.email;
+    user.password = req.body.password;
+
+    user.save(function(err, n) {
+        err ? res.status(500).json({error: err}) : res.json({msg: "the user was save correctly"});
+    });
 });
 
-router.post('/validate', (req, res) => {
+router.post('/validate', middlewares, (req, res) => {
     var msg = {};
-    if(req.body.username) {
-        User.findOne({username: req.body.username}, function(err, obj) {
-            console.log(obj);
-            if(obj) {
-                return res.json({
-                    username: "username has already been taken"
-                })
-            }
-            else {
-                msg.msg = "username is not taken";
-            }
-        });
+    if(req.usernameIsTaken) {
+        msg.username = "username has already been taken";
     }
 
-    if(req.body.email) {
-        User.findOne({email: req.body.email}, function(err, obj) {
-            console.log(obj);
-            if(obj) {
-                return res.json({
-                    email: "email has already been taken"
-                });
-            }
-            else {
-                msg.msg += " and email is not taken";
-            }
-        });
+    if(req.emailIsTaken) {
+        msg.email = "email has already been taken";
     }
 
-    res.json(msg)
+    if(!msg.username && !msg.email) {
+        msg.msg = "username and email are valid" ;
+    }
+
+    res.json(JSON.stringify(msg));
 });
 
 module.exports = router;
