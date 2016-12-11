@@ -15,8 +15,7 @@ var UserSchema   = new Schema({
     lastName: String,
     email: String,
     password: String,
-    enable: { type: Boolean, default: false },
-    created: { type: Date, default: Date.now }
+    enable: { type: Boolean, default: false }
 });
 
 UserSchema.statics.findOneUser = function (username, email, cb) {
