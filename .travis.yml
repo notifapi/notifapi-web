@@ -10,6 +10,8 @@ node_js:
 before_script:
   - cp .env.travis .env
 
+sudo: required
+
 before_install:
   - npm install -g node-gyp
 
