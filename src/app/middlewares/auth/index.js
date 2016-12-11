@@ -17,14 +17,14 @@ module.exports = {
             pushError(req, "email", "Enter email");
         }
 
-        User.findOneUser(req.body.username, req.body.email, function (err, user) {
+        User.findOneUser(req.body.username.trim(), req.body.email.trim(), function (err, user) {
             if (err) throw err;
 
-            if (user && user.username === req.body.username) {
+            if (user && user.username === req.body.username.trim()) {
                 pushError(req, "username", "Username has already been taken");
             }
 
-            if (user && user.email === req.body.email) {
+            if (user && user.email === req.body.email.trim()) {
                 pushError(req, "email", "Email exists");
             }
 

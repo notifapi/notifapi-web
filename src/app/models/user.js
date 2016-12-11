@@ -1,5 +1,6 @@
 
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
 /** initialize mongoDB **/
 if (mongoose.connection.readyState == 0) {
@@ -26,6 +27,20 @@ UserSchema.statics.findOneUser = function (username, email, cb) {
             'email': new RegExp(["^", email, "$"].join(""), "i")
         }]
     }, 'username email', cb);
+}
+
+UserSchema.statics.saveUser = function (username, email, password, cb) {
+    var hash = bcrypt.hashSync(body.password.trim(), 10);
+    var user = new User({
+        username: username,
+        email: email,
+        password: hash
+    });
+
+    user.save(function(err, user) {
+        if (err) throw err;
+        return cb(user);
+    });
 }
 
 module.exports = mongoose.model('User', UserSchema);

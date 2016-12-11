@@ -1,5 +1,6 @@
 const express = require('express');
 var router = express.Router();
+var User = require('../models/user');
 
 var auth = require('../middlewares/auth');
 
@@ -12,15 +13,12 @@ router.post('/', auth.validUnique, auth.validPassword, (req, res) => {
         return res.status(403).json(req.error);
     }
 
-    // register the new client
-    var user = new User();
+    const username = req.body.username.trim();
+    const email = req.body.email.trim();
+    const password = req.body.password;
 
-    user.username = req.body.username;
-    user.email = req.body.email;
-    user.password = req.body.password;
-
-    user.save(function(err, n) {
-        err ? res.status(500).json({error: err}) : res.json({msg: "the user was save correctly"});
+    User.saveUser(username, email, password, function (user) {
+        res.json({user: user});
     });
 });
 
