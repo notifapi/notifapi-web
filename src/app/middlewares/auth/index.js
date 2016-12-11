@@ -30,5 +30,16 @@ module.exports = {
 
             return next();
         });
+    },
+    validPassword: function (req, res, next) {
+        if (!req.body.password || req.body.password.trim() === '') {
+            pushError(req, "password", "Enter password");
+        }
+
+        if(req.body.password.length < 8) {
+            pushError(req, "password", "The password has to be more than 7 characters");
+        }
+
+        return next();
     }
 };

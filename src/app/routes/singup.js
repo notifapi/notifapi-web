@@ -7,7 +7,7 @@ router.post('/validate', auth.validUnique, (req, res) => {
     res.status(403).json(req.error ? req.error : {});
 });
 
-router.post('/', auth.validUnique, (req, res) => {
+router.post('/', auth.validUnique, auth.validPassword, (req, res) => {
     if(req.error) {
         return res.status(403).json(req.error);
     }
