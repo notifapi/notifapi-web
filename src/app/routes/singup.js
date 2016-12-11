@@ -5,7 +5,12 @@ var User = require('../models/user');
 var auth = require('../middlewares/auth');
 
 router.post('/validate', auth.validUnique, (req, res) => {
-    res.status(403).json(req.error ? req.error : {});
+    if(req.error) {
+        res.status(403).json(req.error);
+    }
+    else {
+        res.json({});
+    }
 });
 
 router.post('/', auth.validUnique, auth.validPassword, (req, res) => {

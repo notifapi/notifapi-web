@@ -50,9 +50,11 @@ const asyncValidate = (values, dispatch) => {
     return new Promise((resolve, reject) => {
         dispatch(validateUserFields(values))
             .then((response) => {
-                let data = response.payload.response.data;
+                let data = response.payload.data || response.payload.response.data;
+                let status = response.payload.status || response.payload.response.status;
+
                 //if status is not 200 or any one of the fields exist, then there is a field error
-                if(response.error || response.payload.response.status != 200 || data.username || data.email) {
+                if(response.error || status != 200 || data.username || data.email) {
                     //let other components know of error by updating the redux` state
                     dispatch(validateUserFieldsFailure(data));
                     reject(data); //this is for redux-form itself
@@ -72,9 +74,11 @@ const doSignUpUser = (values, dispatch) => {
 
         dispatch(signUpUser(values))
             .then((response) => {
-                let data = response.payload.response.data;
+                let data = response.payload.data || response.payload.response.data;
+                let status = response.payload.status || response.payload.response.status;
+
                 //if any one of these exist, then there is a field error
-                if(response.payload.response.status != 200) {
+                if(status != 200) {
                     //let other components know of error by updating the redux` state
                     dispatch(signUpUserFailure(data));
                     reject(data); //this is for redux-form itself

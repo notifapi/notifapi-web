@@ -9,22 +9,25 @@ var pushError = (req, key, desc) => {
 
 module.exports = {
     validUnique: function (req, res, next) {
-        if (!req.body.username || req.body.username.trim() === '') {
+        const username = req.body.username && req.body.username.trim();
+        const email = req.body.email && req.body.email.trim();
+
+        if (!username || username === '') {
             pushError(req, "username", "Enter username");
         }
 
-        if (!req.body.email || req.body.email.trim() === '') {
+        if (!email || email === '') {
             pushError(req, "email", "Enter email");
         }
 
-        User.findOneUser(req.body.username.trim(), req.body.email.trim(), function (err, user) {
+        User.findOneUser(username, email, function (err, user) {
             if (err) throw err;
 
-            if (user && user.username === req.body.username.trim()) {
+            if (user && user.username === username) {
                 pushError(req, "username", "Username has already been taken");
             }
 
-            if (user && user.email === req.body.email.trim()) {
+            if (user && user.email === email) {
                 pushError(req, "email", "Email exists");
             }
 
