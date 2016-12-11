@@ -17,13 +17,7 @@ module.exports = {
             pushError(req, "email", "Enter email");
         }
 
-        User.findOne({
-            $or: [{
-                'username': new RegExp(["^", req.body.username, "$"].join(""), "i")
-            }, {
-                'email': new RegExp(["^", req.body.email, "$"].join(""), "i")
-            }]
-        }, 'username email', function (err, user) {
+        User.findOneUser(req.body.username, req.body.email, function (err, user) {
             if (err) throw err;
 
             if (user && user.username === req.body.username) {

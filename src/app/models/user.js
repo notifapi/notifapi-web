@@ -11,10 +11,22 @@ var Schema       = mongoose.Schema;
 
 var UserSchema   = new Schema({
     username: String,
+    firstName: String,
+    lastName: String,
     email: String,
     password: String,
     enable: { type: Boolean, default: false },
     created: { type: Date, default: Date.now }
 });
+
+UserSchema.statics.findOneUser = function (username, email, cb) {
+    return this.findOne({
+        $or: [{
+            'username': new RegExp(["^", username, "$"].join(""), "i")
+        }, {
+            'email': new RegExp(["^", email, "$"].join(""), "i")
+        }]
+    }, 'username email', cb);
+}
 
 module.exports = mongoose.model('User', UserSchema);
