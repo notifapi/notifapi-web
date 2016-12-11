@@ -48,24 +48,17 @@ function validate(values) {
 const asyncValidate = (values, dispatch) => {
 
     return new Promise((resolve, reject) => {
-
-        let error = {
-            username: "We can not valid the form in the server",
-            email: "We can not valid the form in the server"
-        }
-
         dispatch(validateUserFields(values))
             .then((response) => {
-                console.log(response);
-                let data = response.error ? error : response.payload.data;
+                let data = response.payload.response.data;
                 //if status is not 200 or any one of the fields exist, then there is a field error
-                if(response.error || response.payload.status != 200 || data.username || data.email) {
+                if(response.error || response.payload.response.status != 200 || data.username || data.email) {
                     //let other components know of error by updating the redux` state
-                    dispatch(validateUserFieldsFailure(response.payload));
+                    dispatch(validateUserFieldsFailure(data));
                     reject(data); //this is for redux-form itself
                 } else {
                     //let other components know that everything is fine by updating the redux` state
-                    dispatch(validateUserFieldsSuccess(response.payload));
+                    dispatch(validateUserFieldsSuccess());
                     resolve();//this is for redux-form itself
                 }
             });
@@ -79,15 +72,15 @@ const doSignUpUser = (values, dispatch) => {
 
         dispatch(signUpUser(values))
             .then((response) => {
-                let data = response.payload.data;
+                let data = response.payload.response.data;
                 //if any one of these exist, then there is a field error
-                if(response.payload.status != 200) {
+                if(response.payload.response.status != 200) {
                     //let other components know of error by updating the redux` state
-                    dispatch(signUpUserFailure(response.payload));
+                    dispatch(signUpUserFailure(data));
                     reject(data); //this is for redux-form itself
                 } else {
                     //let other components know that we got user and things are fine by updating the redux` state
-                    dispatch(signUpUserSuccess(response.payload));
+                    dispatch(signUpUserSuccess(data));
                     resolve();//this is for redux-form itself
                 }
             });
