@@ -12,17 +12,34 @@ if (mongoose.connection.readyState == 0) {
 
 var Schema       = mongoose.Schema;
 
+// email regexp:
+var emailRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 var UserSchema   = new Schema({
-    username: String,
+    username: {
+        type: String,
+        unique: true,
+        required: true,
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+        match: emailRegexp
+    },
+    password: {
+        type: String,
+        required: true
+    },
     firstName: String,
     lastName: String,
-    email: String,
-    password: String,
     enable: { type: Boolean, default: false }
 },
 {
     timestamps: true
 });
+
+UserSchema.index({username: 1, email: -1});
 
 /**
  * Update the field created_at and updated_at automatically

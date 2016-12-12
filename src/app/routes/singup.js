@@ -6,7 +6,7 @@ var auth = require('../middlewares/auth');
 
 router.post('/validate', auth.validUnique, (req, res) => {
     if(req.error) {
-        res.status(403).json(req.error);
+        res.status(409).json(req.error); // http code 409 conflict
     }
     else {
         res.json({});
@@ -15,7 +15,7 @@ router.post('/validate', auth.validUnique, (req, res) => {
 
 router.post('/', auth.validUnique, auth.validPassword, (req, res) => {
     if(req.error) {
-        return res.status(403).json(req.error);
+        return res.status(409).json(req.error); // http code 409 conflict
     }
 
     const username = req.body.username.trim();
