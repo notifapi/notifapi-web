@@ -18,10 +18,10 @@ export default function(state = INITIAL_STATE, action) {
         case SIGNUP_USER:// sign up user, set loading = true
             return { ...state, user: null, error: null, loading: true};
         case SIGNUP_USER_SUCCESS:
-            let user = action.payload.data;
+            let user = action.payload;
             return { ...state, user: user, error: null, loading: false}; //<-- signup OK
         case SIGNUP_USER_FAILURE:// return error and make loading = false
-            error = action.payload.data || { message: action.payload}; //2nd one is network or server down errors
+            error = action.payload;
             return { ...state, user: null, error: error, loading: false};
 
         default:

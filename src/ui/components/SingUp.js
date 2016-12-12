@@ -1,6 +1,5 @@
 
-import React from 'react';
-import { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Field } from 'redux-form';
 
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
@@ -23,7 +22,6 @@ const SingUpBanner = () => {
 }
 
 const SingUpForm = (props) => {
-
     return (
         <form className="form-inline text-center" onSubmit={props.handleSubmit(props.signUpUser)}>
             <Field name="username" type="text" component={renderField} label="Username"/>
@@ -36,6 +34,15 @@ const SingUpForm = (props) => {
 }
 
 export default class SingUp extends Component {
+    static contextTypes = {
+        router: PropTypes.object
+    };
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.user) {
+            this.context.router.push('/confirm');
+        }
+    }
 
     render() {
         const { handleSubmit, invalid } = this.props;
