@@ -12,7 +12,7 @@ const SingUpBanner = () => {
     return (
         <div className="singup singup-padding">
             <h2>
-                Start handler notifications for free with our RestFULL API
+                Start handler notifications for free with our RESTful API
             </h2>
             <p>
                 Sing up now or read down for more details
