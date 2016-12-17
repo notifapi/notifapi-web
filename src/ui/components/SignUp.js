@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { Field } from 'redux-form';
 
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
-    <div className={`form-group singup-form ${touched && error ? 'has-error' : ''}`}>
+    <div className={`form-group signup-form ${touched && error ? 'has-error' : ''}`}>
         <input className="form-control" {...input} placeholder={label} type={type} title={error}/>
     </div>
 )
