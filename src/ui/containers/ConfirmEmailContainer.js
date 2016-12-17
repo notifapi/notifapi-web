@@ -4,7 +4,7 @@ import ConfirmEmail from '../components/ConfirmEmail.js';
 
 const mapStateToProps = (state, ownProps) =>{
     return {
-        user: state.singup && state.singup.user
+        user: state.signup && state.signup.user
     };
 }
 

@@ -17,8 +17,8 @@ export default class Header extends Component {
                             <li><a href="/about">About</a></li>
                             <li><a href="/blog">Blog</a></li>
                         </ul>
-                        <ul id="sing-in" role="navigation" className="nav navbar-nav navbar-right">
-                            <li><a href="/sing-in">SIGN IN</a></li>
+                        <ul id="sign-in" role="navigation" className="nav navbar-nav navbar-right">
+                            <li><a href="/sign-in">SIGN IN</a></li>
                         </ul>
                     </div>
                 </div>

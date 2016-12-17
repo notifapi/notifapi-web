@@ -8,32 +8,32 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
     </div>
 )
 
-const SingUpBanner = () => {
+const SignUpBanner = () => {
     return (
-        <div className="singup singup-padding">
+        <div className="signup signup-padding">
             <h2>
                 Start handler notifications for free with our RESTful API
             </h2>
             <p>
-                Sing up now or read down for more details
+                Sign up now or read down for more details
             </p>
         </div>
     )
 }
 
-const SingUpForm = (props) => {
+const SignUpForm = (props) => {
     return (
         <form className="form-inline text-center" onSubmit={props.handleSubmit(props.signUpUser)}>
             <Field name="username" type="text" component={renderField} label="Username"/>
             <Field name="email" type="text" component={renderField} label="Email"/>
             <Field name="password" type="password" component={renderField} label="Password"/>
 
-            <button type="submit" className="btn btn-success singup-form" disabled={props.invalid}>Sing Up</button>
+            <button type="submit" className="btn btn-success signup-form" disabled={props.invalid}>Sign Up</button>
         </form>
     )
 }
 
-export default class SingUp extends Component {
+export default class SignUp extends Component {
     static contextTypes = {
         router: PropTypes.object
     };
@@ -49,8 +49,8 @@ export default class SingUp extends Component {
 
         return(
             <div>
-                <SingUpBanner />
-                <SingUpForm
+                <SignUpBanner />
+                <SignUpForm
                     handleSubmit={handleSubmit}
                     invalid={invalid}
                     signUpUser={this.props.signUpUser.bind(this)}/>

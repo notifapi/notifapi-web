@@ -1,6 +1,6 @@
 import {
     VALIDATE_USER_FIELDS, VALIDATE_USER_FIELDS_SUCCESS, VALIDATE_USER_FIELDS_FAILURE,
-    SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE } from '../actions/singup';
+    SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE } from '../actions/signup';
 
 const INITIAL_STATE = {user: null, error: null, loading: false};
 

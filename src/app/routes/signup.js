@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../models/user');
 
 var auth = require('../middlewares/auth');
+var emailServ = require('../providers/email');
 
 router.post('/validate', auth.validUnique, (req, res) => {
     if(req.error) {
@@ -23,6 +24,7 @@ router.post('/', auth.validUnique, auth.validPassword, (req, res) => {
     const password = req.body.password;
 
     User.saveUser(username, email, password, function (user) {
+        emailServ.sendConfimSignup(email, user);
         res.json({user: user});
     });
 });

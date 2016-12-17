@@ -49,24 +49,24 @@ footer div {
   color:#bbbbbb;
 }
 
-.singup-padding {
+.signup-padding {
   padding-top: 80px;
   letter-spacing: -1px;
   text-align: center;
 }
 
-.singup h2 {
+.signup h2 {
   color: #35393b;
   font-size: 3.6rem;
   font-weight: 100;
 }
 
-.singup p {
+.signup p {
   color: #7d878a;
   font-size: 2rem;
   margin-top: 1.6rem;
 }
 
-.singup-form {
+.signup-form {
   padding-right: 5px;
 }

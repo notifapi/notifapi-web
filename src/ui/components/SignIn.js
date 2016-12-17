@@ -2,12 +2,12 @@
 import React from 'react';
 import { Component } from 'react';
 
-export default class SingIn extends Component {
+export default class SignIn extends Component {
 
     render() {
         return(
             <h1>
-                Sing In here!!!
+                Sign In here!!!
             </h1>
         )
     }

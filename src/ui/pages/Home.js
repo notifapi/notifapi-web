@@ -1,13 +1,13 @@
 import React from 'react';
 import { Component } from 'react';
 import HomeContainer from '../containers/HomeContainer';
-import SingUpContainer from '../containers/SingUpContainer';
+import SignUpContainer from '../containers/SignUpContainer';
 
 export default class Home extends Component {
     render() {
         return (
             <HomeContainer >
-                <SingUpContainer />
+                <SignUpContainer />
             </HomeContainer>
         );
     }

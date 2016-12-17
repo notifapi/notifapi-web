@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
 const routes = require('./routes');
-const singup = require('./routes/singup');
+const signup = require('./routes/signup');
 
 const app = express();
 // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
@@ -31,7 +31,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // ExpressJs routes
 app.use('/', routes);
-app.use('/sing-up', singup);
+app.use('/sign-up', signup);
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {

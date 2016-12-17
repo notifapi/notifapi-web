@@ -1,11 +1,11 @@
 import {
     validateUserFields, validateUserFieldsSuccess, validateUserFieldsFailure,
-    signUpUser, signUpUserSuccess, signUpUserFailure } from '../actions/singup';
+    signUpUser, signUpUserSuccess, signUpUserFailure } from '../actions/signup';
 
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
-import SingUp from '../components/SingUp';
+import SignUp from '../components/SignUp';
 
 //Client side validation
 function validate(values) {
@@ -100,7 +100,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, ownProps) =>{
     return {
-        user: state.singup.user
+        user: state.signup.user
     };
 }
 
@@ -112,4 +112,4 @@ let form = reduxForm({
     validate
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(form(SingUp));
+export default connect(mapStateToProps, mapDispatchToProps)(form(SignUp));
