@@ -6,16 +6,15 @@ var auth = require('../middlewares/auth');
 var emailServ = require('../providers/email');
 
 router.post('/validate', auth.validUnique, (req, res) => {
-    if(req.error) {
-        res.status(409).json(req.error); // http code 409 conflict
+    if (req.error) {
+        return res.status(409).json(req.error); // http code 409 conflict
     }
-    else {
-        res.json({});
-    }
+
+    res.json({});
 });
 
 router.post('/', auth.validUnique, auth.validPassword, (req, res) => {
-    if(req.error) {
+    if (req.error) {
         return res.status(409).json(req.error); // http code 409 conflict
     }
 
