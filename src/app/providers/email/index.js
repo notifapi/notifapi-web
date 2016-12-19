@@ -1,12 +1,12 @@
-var EmailTemplate = require('email-templates').EmailTemplate
-var path = require('path')
+var EmailTemplate = require('email-templates').EmailTemplate;
+var path = require('path');
 var provider = require('./sendgrid');
 
 var renderEmail = (payload, tpl, onSendEmail) => {
     var templateDir = path.join(__dirname, 'templates', tpl);
 
     var emailTemplate = new EmailTemplate(templateDir);
-    emailTemplate.render(payload, function (err, result) {
+    emailTemplate.render(payload, (err, result) => {
         onSendEmail(result.html);
     })
 }

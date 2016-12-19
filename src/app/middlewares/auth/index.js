@@ -8,7 +8,7 @@ var pushError = (req, key, desc) => {
 };
 
 module.exports = {
-    validUnique: function (req, res, next) {
+    validUnique: (req, res, next) => {
         const username = req.body.username && req.body.username.trim();
         const email = req.body.email && req.body.email.trim();
 
@@ -20,7 +20,7 @@ module.exports = {
             pushError(req, "email", "Enter email");
         }
 
-        User.findOneUser(username, email, function (err, user) {
+        User.findOneUser(username, email, (err, user) => {
             if (err) throw err;
 
             if (user && user.username === username) {
@@ -34,7 +34,7 @@ module.exports = {
             return next();
         });
     },
-    validPassword: function (req, res, next) {
+    validPassword: (req, res, next) => {
         if (!req.body.password || req.body.password.trim() === '') {
             pushError(req, "password", "Enter password");
         }

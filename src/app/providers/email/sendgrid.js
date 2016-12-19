@@ -8,7 +8,7 @@ var sendEmailSendgrid = (mail, cb) => {
         body: mail.toJSON(),
     });
 
-    sg.API(request, function(error, response) {
+    sg.API(request, (error, response) => {
         cb(error, response);
     });
 }

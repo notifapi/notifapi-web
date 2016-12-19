@@ -1,5 +1,5 @@
 module.exports = {
-    cleanUser: function (user) {
+    cleanUser: (user) => {
         var u = user.toJSON();
         return {
             _id: u._id,

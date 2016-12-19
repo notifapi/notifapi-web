@@ -44,7 +44,7 @@ UserSchema.index({username: 1, email: -1});
 /**
  * Update the field created_at and updated_at automatically
  */
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', (next) => {
     const now = new Date();
     this.updated_at = now;
     if ( !this.created_at ) {
@@ -63,10 +63,10 @@ UserSchema.statics = {
             }]
         }, 'username email', cb);
     },
-    saveUser: function (username, email, password, cb) {
+    saveUser: (username, email, password, cb) => {
         var User = mongoose.model('User', UserSchema);
         // valid if the user exist
-        User.findOneUser(username, email, function (err, user) {
+        User.findOneUser(username, email, (err, user) => {
             if (err) throw err;
             if (user) return cb(); // if the user exist return empty user
 
@@ -76,7 +76,7 @@ UserSchema.statics = {
                 password: bcrypt.hashSync(password.trim(), 10) //encrpt password
             });
 
-            user.save(function (error, savedUser) {
+            user.save((error, savedUser) => {
                 if (error) throw error;
 
                 //clean the user and not include fields like password

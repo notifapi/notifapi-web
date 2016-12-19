@@ -22,7 +22,7 @@ router.post('/', auth.validUnique, auth.validPassword, (req, res) => {
     const email = req.body.email.trim();
     const password = req.body.password;
 
-    User.saveUser(username, email, password, function (user) {
+    User.saveUser(username, email, password, (user) => {
         emailServ.sendConfimSignup(email, user);
         res.json({user: user});
     });
