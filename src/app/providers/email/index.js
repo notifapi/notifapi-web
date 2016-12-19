@@ -7,7 +7,7 @@ var renderEmail = (payload, tpl, onSendEmail) => {
 
     var emailTemplate = new EmailTemplate(templateDir);
     emailTemplate.render(payload, (err, result) => {
-        onSendEmail(result.html);
+        onSendEmail(result.subject, result.html);
     })
 }
 
@@ -31,7 +31,7 @@ module.exports = {
             user: data
         };
 
-        renderEmail(payload, 'confirmSignup', (body) => {
+        renderEmail(payload, 'confirmSignup', (subject, body) => {
             sendEmail(to, from, subject, body);
         })
     }
