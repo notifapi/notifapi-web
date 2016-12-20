@@ -2,6 +2,7 @@ const express = require('express');
 const uuidV4 = require('uuid/v4');
 var router = express.Router();
 var User = require('../models/user');
+var Verify = require('../models/verify');
 
 var auth = require('../middlewares/auth');
 var emailServ = require('../providers/email');
@@ -25,8 +26,10 @@ router.post('/', auth.validUnique, auth.validPassword, (req, res) => {
 
     User.saveUser(username, email, password, (user) => {
         const uuid = uuidV4();
-        emailServ.sendConfimSignup(email, uuid, user);
-        res.json({user: user});
+        Verify.saveUUID(email, uuid, () => {
+            emailServ.sendConfimSignup(user, uuid);
+            res.json({user: user});
+        });
     });
 });
 

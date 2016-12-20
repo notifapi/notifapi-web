@@ -22,18 +22,17 @@ var sendEmail = (to, from, subject, body) => {
 }
 
 module.exports = {
-    sendConfimSignup: (to, uuid, data) => {
-        const subject = "Please confirm your account!!";
+    sendConfimSignup: (user, uuid) => {
         const from = 'info@notifapi.com';
 
         var payload = {
             title: 'Please confirm your account!!',
-            user: data,
+            user: user,
             url: process.env.BASE_URL + 'confirm/' + uuid
         };
 
         renderEmail(payload, 'confirmSignup', (subject, body) => {
-            sendEmail(to, from, subject, body);
+            sendEmail(user.email, from, subject, body);
         })
     }
 }
