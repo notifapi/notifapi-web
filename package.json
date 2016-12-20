@@ -50,6 +50,7 @@
     "redux-form": "^6.2.0",
     "redux-promise": "^0.5.3",
     "sendgrid": "^4.7.1",
-    "throng": "^4.0.0"
+    "throng": "^4.0.0",
+    "uuid": "^3.0.1"
   }
 }
