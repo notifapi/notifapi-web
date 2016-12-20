@@ -27,7 +27,7 @@ module.exports = {
         const from = 'info@notifapi.com';
 
         var payload = {
-            title: 'Confirm Email',
+            title: 'Please confirm your account!!',
             user: data
         };
 

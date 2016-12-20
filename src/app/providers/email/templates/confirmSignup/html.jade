@@ -3,5 +3,19 @@ extends ../layout
 block emailBody
     tr
         td(width="80%")
-            h4 Email body goes here
-            p Hello #{user.username} This is your confirmation email.
+            h4 Hi #{user.username},
+            | thanks for signing up!
+            |  Welcome to
+            b  NotifAPI!
+            br
+            br
+            a(href="#") Click here to activate
+            |  your
+            b  NotifAPI
+            |  account
+            br
+            br
+            | Regards
+            br
+            br
+            | NotifAPI Support
