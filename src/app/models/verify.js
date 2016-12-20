@@ -6,9 +6,9 @@ if (mongoose.connection.readyState == 0) {
     mongoose.connect(process.env.MONGODB_URI);
 }
 
-var Schema       = mongoose.Schema;
+var Schema          = mongoose.Schema;
 
-var VerifySchema   = new Schema({
+var VerifySchema    = new Schema({
     uuid: {
         type: String,
         required: true,
@@ -22,13 +22,13 @@ var VerifySchema   = new Schema({
     timestamps: true
 });
 
-VerifySchema.index({uuid: 1});
+VerifySchema.index({uuid: 1, data: -1});
 
 VerifySchema.statics = {
     findOneVerify: function (data, cb) {
         this.findOne({
-                'data': new RegExp(["^", data, "$"].join(""), "i")
-        }, 'data uuid', cb);
+            'data': new RegExp(["^", data, "$"].join(""), "i")
+        },  'data uuid', cb);
     },
     saveUUID: (data, uuid, cb) => {
         var Verify = mongoose.model('Verify', UserSchema);
@@ -36,14 +36,14 @@ VerifySchema.statics = {
         Verify.findOneVerify(data, (err, verify) => {
             if (err) throw err;
 
-            if (verify) {
-                verify.uuid = uuid;
-            }
-            else {
+            if (!verify) {
                 verify = new Verify({
                     data: data,
                     uuid: uuid
                 });
+            }
+            else {
+                verify.uuid = uuid;
             }
 
             verify.save((error, savedVerify) => {
@@ -51,9 +51,7 @@ VerifySchema.statics = {
 
                 return cb();
             });
-
         })
-
     }
 };
 
